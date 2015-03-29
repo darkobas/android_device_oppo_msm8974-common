@@ -22,13 +22,15 @@ import android.preference.PreferenceActivity;
 import android.preference.PreferenceCategory;
 import android.preference.TwoStatePreference;
 
+import org.omnirom.device.ButtonBacklightBrightness;
+
 public class DeviceSettings extends PreferenceActivity  {
 
     public static final String KEY_DOUBLE_TAP_SWITCH = "double_tap";
     public static final String KEY_CAMERA_SWITCH = "camera";
     public static final String KEY_TORCH_SWITCH = "torch";
 
-
+    private static final String KEY_BUTTON_BACKLIGHT = "button_backlight";
     private static final String KEY_PROXIMITY_WAKE = "proximity_on_wake";
     private static final String CATEGORY_ADVANCED = "advanced_display_prefs";
 
@@ -85,6 +87,11 @@ public class DeviceSettings extends PreferenceActivity  {
         if (!proximityCheckOnWait) {
             advancedPrefs.removePreference(findPreference(KEY_PROXIMITY_WAKE));
             Settings.System.putInt(getContentResolver(), Settings.System.PROXIMITY_ON_WAKE, 1);
+        }
+        final ButtonBacklightBrightness backlight =
+                (ButtonBacklightBrightness) findPreference(KEY_BUTTON_BACKLIGHT);
+        if (!backlight.isButtonSupported()) {
+            advancedPrefs.removePreference(backlight);
         }
 
     }
