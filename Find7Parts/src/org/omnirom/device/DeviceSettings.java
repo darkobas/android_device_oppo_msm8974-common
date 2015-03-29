@@ -19,6 +19,7 @@ package org.omnirom.device;
 
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
+import android.preference.PreferenceCategory;
 import android.preference.TwoStatePreference;
 
 public class DeviceSettings extends PreferenceActivity  {
@@ -26,6 +27,10 @@ public class DeviceSettings extends PreferenceActivity  {
     public static final String KEY_DOUBLE_TAP_SWITCH = "double_tap";
     public static final String KEY_CAMERA_SWITCH = "camera";
     public static final String KEY_TORCH_SWITCH = "torch";
+
+
+    private static final String KEY_PROXIMITY_WAKE = "proximity_on_wake";
+    private static final String CATEGORY_ADVANCED = "advanced_display_prefs";
 
 /* Commented out until reimplemented on F7
     public static final String KEY_MUSIC_SWITCH = "music";
@@ -74,6 +79,14 @@ public class DeviceSettings extends PreferenceActivity  {
         mSuspendCoreCap.setValue(SuspendCoreCap.getValue(this));
         mSuspendCoreCap.setOnPreferenceChangeListener(mSuspendCoreCap);
 */
+        PreferenceCategory advancedPrefs = (PreferenceCategory) findPreference(CATEGORY_ADVANCED);
+        boolean proximityCheckOnWait = getResources().getBoolean(
+                com.android.internal.R.bool.config_proximityCheckOnWake);
+        if (!proximityCheckOnWait) {
+            advancedPrefs.removePreference(findPreference(KEY_PROXIMITY_WAKE));
+            Settings.System.putInt(getContentResolver(), Settings.System.PROXIMITY_ON_WAKE, 1);
+        }
+
     }
 
     @Override

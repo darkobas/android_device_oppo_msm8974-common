@@ -24,6 +24,19 @@
 -->
 	</PreferenceCategory>
 
+        <PreferenceCategory
+            android:key="advanced_display_prefs"
+            android:title="@string/advanced_display_prefs"
+            android:persistent="false" >
+
+            <SwitchPreference
+                    android:key="proximity_on_wake"
+                    android:title="@string/proximity_wake_title"
+                    android:summary="@string/proximity_wake_summary"
+                    android:defaultValue="true" />
+        </PreferenceCategory>
+
+
 <!--
 	<PreferenceCategory
         android:title="@string/category_vibrator">
