@@ -43,11 +43,6 @@
                     android:title="@string/proximity_wake_title"
                     android:summary="@string/proximity_wake_summary"
                     android:defaultValue="true" />
-            <org.omnirom.device.ButtonBacklightBrightness
-                    android:key="button_backlight"
-                    android:title="@string/button_backlight_title"
-                    android:dialogTitle="@string/button_backlight_title"
-                    android:persistent="false" />
         </PreferenceCategory>
 
 
