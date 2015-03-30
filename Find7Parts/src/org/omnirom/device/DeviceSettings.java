@@ -18,13 +18,18 @@
 package org.omnirom.device;
 
 import android.os.Bundle;
+import android.os.SystemProperties;
+import android.preference.SwitchPreference;
+import android.preference.Preference;
+import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceCategory;
 import android.preference.TwoStatePreference;
+import android.provider.Settings;
 
 import org.omnirom.device.ButtonBacklightBrightness;
 
-public class DeviceSettings extends PreferenceActivity  {
+public class DeviceSettings extends PreferenceActivity implements OnPreferenceChangeListener {
 
     public static final String KEY_DOUBLE_TAP_SWITCH = "double_tap";
     public static final String KEY_CAMERA_SWITCH = "camera";
@@ -33,6 +38,9 @@ public class DeviceSettings extends PreferenceActivity  {
     private static final String KEY_BUTTON_BACKLIGHT = "button_backlight";
     private static final String KEY_PROXIMITY_WAKE = "proximity_on_wake";
     private static final String CATEGORY_ADVANCED = "advanced_display_prefs";
+
+    private static final String KEY_HAPTIC_FEEDBACK = "touchscreen_haptic_feedback";
+    private static final String PROP_HAPTIC_FEEDBACK = "persist.gestures.haptic";
 
 /* Commented out until reimplemented on F7
     public static final String KEY_MUSIC_SWITCH = "music";
@@ -66,6 +74,11 @@ public class DeviceSettings extends PreferenceActivity  {
         mCameraSwitch.setChecked(CameraGestureSwitch.isEnabled(this));
         mCameraSwitch.setOnPreferenceChangeListener(new CameraGestureSwitch());
 
+        final SwitchPreference hapticFeedback =
+                (SwitchPreference) findPreference(KEY_HAPTIC_FEEDBACK);
+        hapticFeedback.setChecked(SystemProperties.getBoolean(PROP_HAPTIC_FEEDBACK, true));
+        hapticFeedback.setOnPreferenceChangeListener(this);
+
         /*mMusicSwitch = (TwoStatePreference) findPreference(KEY_MUSIC_SWITCH);
         mMusicSwitch.setEnabled(MusicGestureSwitch.isSupported());
         mMusicSwitch.setChecked(MusicGestureSwitch.isEnabled(this));
@@ -94,6 +107,17 @@ public class DeviceSettings extends PreferenceActivity  {
             advancedPrefs.removePreference(backlight);
         }
 
+    }
+
+    @Override
+    public boolean onPreferenceChange(Preference preference, Object newValue) {
+        final String key = preference.getKey();
+        if (KEY_HAPTIC_FEEDBACK.equals(key)) {
+            final boolean value = (Boolean) newValue;
+            SystemProperties.set(PROP_HAPTIC_FEEDBACK, value ? "true" : "false");
+            return true;
+        }
+	return false;
     }
 
     @Override
