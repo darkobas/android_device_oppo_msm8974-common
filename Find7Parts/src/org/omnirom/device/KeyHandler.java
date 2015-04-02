@@ -35,7 +35,7 @@ public class KeyHandler implements DeviceKeyHandler {
     private static final int GESTURE_REQUEST = 1;
     private static final int GESTURE_WAKELOCK_DURATION = 3000;
 
-    private static final String KEY_HAPTIC_FEEDBACK = "touchscreen_haptic_feedback";
+    private static final String PROP_HAPTIC_FEEDBACK = "persist.gestures.haptic";
 
     // Supported scancodes
     private static final int GESTURE_CIRCLE_SCANCODE = 62;
@@ -150,7 +150,7 @@ public class KeyHandler implements DeviceKeyHandler {
     }
 
     private void doHapticFeedback() {
-        if (mVibrator == null || !DeviceSettings.getBoolean(KEY_HAPTIC_FEEDBACK, true)) return;
+        if (mVibrator == null || !SystemProperties.getBoolean(PROP_HAPTIC_FEEDBACK, true)) return;
         mVibrator.vibrate(80);
     }
 }
