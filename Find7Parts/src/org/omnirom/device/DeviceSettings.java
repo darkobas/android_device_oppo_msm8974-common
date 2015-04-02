@@ -18,7 +18,6 @@
 package org.omnirom.device;
 
 import android.os.Bundle;
-import android.os.SystemProperties;
 import android.preference.SwitchPreference;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
@@ -38,7 +37,6 @@ public class DeviceSettings extends PreferenceActivity implements OnPreferenceCh
     private static final String CATEGORY_ADVANCED = "advanced_display_prefs";
 
     private static final String KEY_HAPTIC_FEEDBACK = "touchscreen_haptic_feedback";
-    private static final String PROP_HAPTIC_FEEDBACK = "persist.gestures.haptic";
 
 /* Commented out until reimplemented on F7
     public static final String KEY_MUSIC_SWITCH = "music";
@@ -48,6 +46,7 @@ public class DeviceSettings extends PreferenceActivity implements OnPreferenceCh
     private TwoStatePreference mDoubleTapSwitch;
     private TwoStatePreference mTorchSwitch;
     private TwoStatePreference mCameraSwitch;
+    private SwitchPreference mHapticSwitch;
 
 /*  private TwoStatePreference mMusicSwitch;
 */
@@ -72,10 +71,8 @@ public class DeviceSettings extends PreferenceActivity implements OnPreferenceCh
         mCameraSwitch.setChecked(CameraGestureSwitch.isEnabled(this));
         mCameraSwitch.setOnPreferenceChangeListener(new CameraGestureSwitch());
 
-        final SwitchPreference hapticFeedback =
-                (SwitchPreference) findPreference(KEY_HAPTIC_FEEDBACK);
-        hapticFeedback.setChecked(SystemProperties.getBoolean(PROP_HAPTIC_FEEDBACK, true));
-        hapticFeedback.setOnPreferenceChangeListener(this);
+        mHapticSwitch = (SwitchPreference) findPreference(KEY_HAPTIC_FEEDBACK);
+        mHapticSwitch.setOnPreferenceChangeListener(this);
 
         /*mMusicSwitch = (TwoStatePreference) findPreference(KEY_MUSIC_SWITCH);
         mMusicSwitch.setEnabled(MusicGestureSwitch.isSupported());
@@ -107,7 +104,6 @@ public class DeviceSettings extends PreferenceActivity implements OnPreferenceCh
         final String key = preference.getKey();
         if (KEY_HAPTIC_FEEDBACK.equals(key)) {
             final boolean value = (Boolean) newValue;
-            SystemProperties.set(PROP_HAPTIC_FEEDBACK, value ? "true" : "false");
             return true;
         }
 	return false;
@@ -122,7 +118,6 @@ public class DeviceSettings extends PreferenceActivity implements OnPreferenceCh
     protected void onPause() {
         super.onPause();
     }
-
 
     @Override
     protected void onDestroy() {

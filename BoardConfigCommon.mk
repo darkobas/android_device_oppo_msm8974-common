@@ -8,6 +8,7 @@ TARGET_NO_BOOTLOADER := true
 # Platform
 TARGET_BOARD_PLATFORM := msm8974
 TARGET_BOARD_PLATFORM_GPU := qcom-adreno330
+BOARD_VENDOR := oppo
 
 # Architecture
 TARGET_CPU_VARIANT := krait
@@ -124,4 +125,8 @@ TW_INCLUDE_JB_CRYPTO := false
 TW_NO_SCREEN_BLANK := true
 TW_EXCLUDE_ENCRYPTED_BACKUPS := true
 TW_INCLUDE_L_CRYPTO := true
+
+# GPS HAL lives here
+TARGET_GPS_HAL_PATH := device/oppo/msm8974-common/gps
+TARGET_PROVIDES_GPS_LOC_API := true
 BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_23x41.h\"
