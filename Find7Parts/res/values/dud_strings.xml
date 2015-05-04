@@ -3,8 +3,8 @@
     <string name="advanced_display_prefs">Advanced Display Settings</string>
 
     <!-- Proximity wake -->
-    <string name="proximity_wake_title">Disable accidental wake-up prevention</string>
-    <string name="proximity_wake_summary">Do not check proximity sensor prior to waking up screen</string>
+    <string name="proximity_wake_title">Enable accidental wake-up prevention</string>
+    <string name="proximity_wake_summary">check proximity sensor prior to waking up screen</string>
 
     <!-- Key backlight -->
     <string name="button_backlight_title">Backlight</string>
