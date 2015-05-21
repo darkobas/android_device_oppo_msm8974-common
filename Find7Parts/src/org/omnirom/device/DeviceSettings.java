@@ -23,9 +23,8 @@ import android.preference.SwitchPreference;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.PreferenceActivity;
-import android.preference.PreferenceCategory;
 import android.preference.TwoStatePreference;
-import android.provider.Settings;
+
 
 public class DeviceSettings extends PreferenceActivity implements OnPreferenceChangeListener {
 
@@ -35,7 +34,6 @@ public class DeviceSettings extends PreferenceActivity implements OnPreferenceCh
 
 
     private static final String KEY_PROXIMITY_WAKE = "proximity_on_wake";
-    private static final String CATEGORY_ADVANCED = "advanced_display_prefs";
 
     private static final String KEY_HAPTIC_FEEDBACK = "touchscreen_haptic_feedback";
     private static final String PROP_HAPTIC_FEEDBACK = "persist.gestures.haptic";
@@ -76,7 +74,7 @@ public class DeviceSettings extends PreferenceActivity implements OnPreferenceCh
                 (SwitchPreference) findPreference(KEY_HAPTIC_FEEDBACK);
         hapticFeedback.setChecked(SystemProperties.getBoolean(PROP_HAPTIC_FEEDBACK, true));
         hapticFeedback.setOnPreferenceChangeListener(this);
-
+        
         /*mMusicSwitch = (TwoStatePreference) findPreference(KEY_MUSIC_SWITCH);
         mMusicSwitch.setEnabled(MusicGestureSwitch.isSupported());
         mMusicSwitch.setChecked(MusicGestureSwitch.isEnabled(this));
@@ -92,14 +90,6 @@ public class DeviceSettings extends PreferenceActivity implements OnPreferenceCh
         mSuspendCoreCap.setValue(SuspendCoreCap.getValue(this));
         mSuspendCoreCap.setOnPreferenceChangeListener(mSuspendCoreCap);
 */
-        PreferenceCategory advancedPrefs = (PreferenceCategory) findPreference(CATEGORY_ADVANCED);
-        boolean proximityCheckOnWait = getResources().getBoolean(
-                com.android.internal.R.bool.config_proximityCheckOnWake);
-        if (!proximityCheckOnWait) {
-            advancedPrefs.removePreference(findPreference(KEY_PROXIMITY_WAKE));
-            Settings.System.putInt(getContentResolver(), Settings.System.PROXIMITY_ON_WAKE, 1);
-        }
-
     }
 
     @Override
