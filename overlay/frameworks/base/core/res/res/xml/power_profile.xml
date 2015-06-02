@@ -64,14 +64,14 @@
         <value>57.9</value> <!-- 300 MHz CPU speed -->
         <value>88.2</value> <!-- 422.4 MHz CPU speed -->
         <value>99.6</value> <!-- 652.8 MHz CPU speed -->
-        <value>138.8</value> <!-- 729.6 MHz CPU speed -->
-        <value>149.6</value> <!-- 883.2 MHz CPU speed -->
-        <value>170.2</value> <!-- 960.0 MHz CPU speed -->
+        <value>123.8</value> <!-- 729.6 MHz CPU speed -->
+        <value>126.6</value> <!-- 883.2 MHz CPU speed -->
+        <value>166.2</value> <!-- 960.0 MHz CPU speed -->
         <value>178.3</value> <!-- 1036.8 MHz CPU speed -->
         <value>189.1</value> <!-- 1190.4 MHz CPU speed -->
-        <value>232.1</value> <!-- 1267.2 MHz CPU speed -->
-        <value>256.5</value> <!-- 1497.6 MHz CPU speed -->
-        <value>266.4</value> <!-- 1574.0 MHz CPU speed -->
+        <value>212.1</value> <!-- 1267.2 MHz CPU speed -->
+        <value>239.5</value> <!-- 1497.6 MHz CPU speed -->
+        <value>242.4</value> <!-- 1574.0 MHz CPU speed -->
         <value>287.7</value> <!-- 1728.0 MHz CPU speed -->
         <value>325.7</value> <!-- 1958.4 MHz CPU speed -->
         <value>386.2</value> <!-- 2265.6 MHz CPU speed -->

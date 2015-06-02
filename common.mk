@@ -129,6 +129,15 @@ PRODUCT_PACKAGES += \
 #    libOmxEvrcEnc \
 #    libOmxQcelp13Enc \
 
+PRODUCT_PACKAGES += \
+    libdashplayer \
+    libOmxAacEnc \
+    libOmxAmrEnc \
+    libOmxEvrcEnc \
+    libOmxQcelp13Enc \
+    libOmxVdecHevc \
+    qcmediaplayer
+
 # wifi
 PRODUCT_PACKAGES += \
     mac-update \
@@ -226,8 +235,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
     audio.offload.buffer.size.kb=32 \
     audio.offload.gapless.enabled=true \
     use.voice.path.for.pcm.voip=true \
-    av.offload.enable=false \
-    av.streaming.offload.enable=false \
+    av.offload.enable=true \
+    av.streaming.offload.enable=true \
     audio.offload.pcm.16bit.enable=true \
     audio.offload.multiple.enabled=false
 
