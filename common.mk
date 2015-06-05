@@ -109,6 +109,7 @@ PRODUCT_PACKAGES += \
     camera-wrapper.msm8974 \
     libaudio-resampler \
     audiod \
+    tinymix \
     libqcompostprocbundle \
     libqcomvisualizer \
     libqcomvoiceprocessing \
@@ -123,11 +124,6 @@ PRODUCT_PACKAGES += \
     libOmxCore \
     libstagefrighthw \
     libc2dcolorconvert
-
-#    libOmxAacEnc \
-#    libOmxAmrEnc \
-#    libOmxEvrcEnc \
-#    libOmxQcelp13Enc \
 
 PRODUCT_PACKAGES += \
     libdashplayer \
@@ -238,6 +234,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     av.offload.enable=true \
     av.streaming.offload.enable=true \
     audio.offload.pcm.16bit.enable=true \
+    audio.offload.pcm.24bit.enable=true \
     audio.offload.multiple.enabled=false
 
 # QCOM
