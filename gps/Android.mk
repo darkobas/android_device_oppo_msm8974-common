@@ -14,12 +14,10 @@
 # limitations under the License.
 #
 
-ifeq ($(BOARD_VENDOR),oppo)
 ifeq ($(TARGET_BOARD_PLATFORM),msm8974)
 
 LOC_PATH := $(call my-dir)
 
 include $(call first-makefiles-under,$(LOC_PATH))
 
-endif
 endif
