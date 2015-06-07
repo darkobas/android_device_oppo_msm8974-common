@@ -38,9 +38,9 @@ public class KeyHandler implements DeviceKeyHandler {
     private static final String PROP_HAPTIC_FEEDBACK = "persist.gestures.haptic";
 
     // Supported scancodes
-    private static final int GESTURE_CIRCLE_SCANCODE = 62;
-    private static final int GESTURE_V_SCANCODE = 63;
-    private static final int KEY_DOUBLE_TAP = 61;
+    private static final int GESTURE_CIRCLE_SCANCODE = 250;
+    private static final int GESTURE_V_SCANCODE = 252;
+    private static final int KEY_DOUBLE_TAP = 255;
 
     private static final int[] sSupportedGestures = new int[]{
         GESTURE_CIRCLE_SCANCODE,
