@@ -248,10 +248,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     com.qc.hardware=true
 
-# QC Perf
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.vendor.extension_library=/vendor/lib/libqc-opt.so
-
 # gps
 #system prop for switching gps driver to qmi
 PRODUCT_PROPERTY_OVERRIDES += \
