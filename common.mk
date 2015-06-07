@@ -260,10 +260,5 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.build.selinux=1
 
-# sensors
-# Sensor configuration from Oppo
-PRODUCT_COPY_FILES += \
-    $(COMMON_PATH)/sensor/sap.conf:system/etc/sap.conf
-
 $(call inherit-product, frameworks/native/build/phone-xxhdpi-2048-dalvik-heap.mk)
 $(call inherit-product, frameworks/native/build/phone-xxhdpi-2048-hwui-memory.mk)
