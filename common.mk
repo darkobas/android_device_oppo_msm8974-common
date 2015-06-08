@@ -222,10 +222,13 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
 
 # qcom
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.qc.sdk.audio.ssr=false \
-    ro.qc.sdk.sensors.gestures=true \
-    ro.qc.sdk.camera.facialproc=false \
+    ro.qc.sdk.camera.facialproc=true \
     ro.qc.sdk.gestures.camera=false \
+    ro.qti.sdk.sensors.gestures=true \
+    ro.qti.sensors.bte=true \
+    ro.qti.sensors.gtap=true \
+    ro.qti.sensors.ir_proximity=true \
+    ro.qti.sensors.vmd=true \
     camera2.portability.force_api=1
 
 # Audio Configuration
