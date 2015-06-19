@@ -66,9 +66,9 @@
          than the size of the config_autoBrightnessLevels array.
          This must be overridden in platform specific overlays -->
     <integer-array name="config_autoBrightnessLcdBacklightValues">
-        <item>13</item>   <!-- 0-2 -->
-        <item>25</item>   <!-- 3-7 -->
-        <item>32</item>   <!-- 5-15 -->
+        <item>8</item>   <!-- 0-2 -->
+        <item>16</item>   <!-- 3-7 -->
+        <item>28</item>   <!-- 5-15 -->
         <item>41</item>   <!-- 15-50 -->
         <item>52</item>   <!-- 50-100 -->
         <item>62</item>   <!-- 100-200 -->
@@ -98,6 +98,8 @@
         <item>144</item>  <!-- 1000-1600 -->
         <item>181</item>  <!-- 1600-3000 -->
         <item>255</item>  <!-- 3000+ -->
+=======
+>>>>>>> cedacfe... overlay: adjust automatic brightness values
     </integer-array>
 
     <!-- Boolean indicating whether we want button brightness support -->
@@ -313,6 +315,4 @@
 
     <!--  Maximum number of supported users -->
     <integer name="config_multiuserMaximumUsers">4</integer>
-    <!--  Whether Multiuser UI should be shown -->
-    <bool name="config_enableMultiUserUI">true</bool>
 </resources>
