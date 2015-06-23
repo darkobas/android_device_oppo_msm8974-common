@@ -134,6 +134,8 @@ PRODUCT_PACKAGES += \
     libOmxVdecHevc \
     qcmediaplayer
 
+PRODUCT_BOOT_JARS += qcmediaplayer
+
 # wifi
 PRODUCT_PACKAGES += \
     mac-update \
@@ -233,8 +235,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     use.voice.path.for.pcm.voip=true \
     av.offload.enable=true \
     av.streaming.offload.enable=true \
-    audio.offload.pcm.16bit.enable=true \
-    audio.offload.pcm.24bit.enable=true \
+    audio.offload.pcm.enable=true \
     audio.offload.multiple.enabled=false
 
 # QCOM
