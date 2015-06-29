@@ -96,6 +96,8 @@ BOARD_EGL_CFG := $(COMMON_PATH)/configs/egl.cfg
 
 # charger
 BOARD_CHARGER_DISABLE_INIT_BLANK := true
+HEALTHD_FORCE_BACKLIGHT_CONTROL := true
+HEALTHD_BACKLIGHT_ON_LEVEL := 125
 
 # power hal
 TARGET_PROVIDES_POWERHAL := true
@@ -144,3 +146,4 @@ TW_INCLUDE_L_CRYPTO := true
 TARGET_GPS_HAL_PATH := device/oppo/msm8974-common/gps
 TARGET_PROVIDES_GPS_LOC_API := true
 BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_23x41.h\"
+TW_BRIGHTNESS_PATH := /sys/class/leds/lcd-backlight/brightness
