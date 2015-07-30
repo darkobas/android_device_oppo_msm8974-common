@@ -159,7 +159,11 @@ PRODUCT_COPY_FILES += \
 
 # GPS
 PRODUCT_PACKAGES += \
-    gps.msm8974
+    gps.msm8974 \
+    libloc_api_02 \
+    libloc_ds_api \
+    libloc_core \
+    libloc_eng
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/gps/gps.conf:system/etc/gps.conf \
