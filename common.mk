@@ -247,7 +247,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     audio.offload.gapless.enabled=true \
     use.voice.path.for.pcm.voip=true \
     av.offload.enable=true \
-    av.streaming.offload.enable=false \
+    av.streaming.offload.enable=true \
     audio.offload.pcm.enable=true \
     audio.offload.multiple.enabled=false
 
