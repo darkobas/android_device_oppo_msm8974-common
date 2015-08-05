@@ -13,6 +13,9 @@
 		android:label="@string/advanced_settings"
 		android:theme="@android:style/Theme.Material.Settings"
 		android:supportsRtl="true" >
+        <!-- stub to ensure its loaded - DO NOT REMOVE -->
+        <activity android:name=".KeyHandler"/>
+
 		<activity
 			android:name="org.omnirom.device.DeviceSettings"
 			android:exported="true"
