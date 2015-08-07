@@ -24,7 +24,7 @@ import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.PreferenceActivity;
 import android.preference.TwoStatePreference;
-
+import android.provider.Settings;
 
 public class DeviceSettings extends PreferenceActivity implements OnPreferenceChangeListener {
 
@@ -78,6 +78,13 @@ public class DeviceSettings extends PreferenceActivity implements OnPreferenceCh
         mMusicSwitch.setEnabled(MusicGestureSwitch.isSupported());
         mMusicSwitch.setChecked(MusicGestureSwitch.isEnabled(this));
         mMusicSwitch.setOnPreferenceChangeListener(new MusicGestureSwitch());
+
+        Preference proximityWake = findPreference(KEY_PROXIMITY_WAKE);
+        boolean proximityCheckOnWake = getResources().getBoolean(
+                com.android.internal.R.bool.config_proximityCheckOnWake);
+        if (proximityWake != null && !proximityCheckOnWake) { 
+            Settings.System.putInt(getContentResolver(), Settings.System.PROXIMITY_ON_WAKE, 0);
+        }
 /*
         mSuspendFreqCap = (SuspendFreqCap) findPreference(KEY_SUSPEND_CAP_FREQ);
         mSuspendFreqCap.setEnabled(SuspendFreqCap.isSupported());

@@ -61,14 +61,21 @@ public class KeyHandler implements DeviceKeyHandler {
     private final Context mContext;
     private final PowerManager mPowerManager;
     private EventHandler mEventHandler;
-    private WakeLock mGestureWakeLock;
     private KeyguardManager mKeyguardManager;
     private Vibrator mVibrator;
+    private Sensor mProximitySensor;
+    private SensorManager mSensorManager;
+    WakeLock mProximityWakeLock;
+    WakeLock mGestureWakeLock;
 
     public KeyHandler(Context context) {
         mContext = context;
         mEventHandler = new EventHandler();
         mPowerManager = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
+        mSensorManager = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
+        mProximitySensor = mSensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
+        mProximityWakeLock = mPowerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK,
+                "ProximityWakeLock");
         mGestureWakeLock = mPowerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK,
                 "GestureWakeLock");
         mVibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
@@ -137,19 +144,23 @@ public class KeyHandler implements DeviceKeyHandler {
     }
 
     public boolean handleKeyEvent(KeyEvent event) {
-        if (event.getAction() != KeyEvent.ACTION_UP) {
+        if (event.getAction() != KeyEvent.ACTION_UP
+                && event.getScanCode() != FLIP_CAMERA_SCANCODE) {
             return false;
         }
-        if (DEBUG) Log.i(TAG, "scanCode=" + event.getScanCode());
         boolean isKeySupported = ArrayUtils.contains(sSupportedGestures, event.getScanCode());
         if (isKeySupported && !mEventHandler.hasMessages(GESTURE_REQUEST)) {
             if (event.getScanCode() == KEY_DOUBLE_TAP && !mPowerManager.isScreenOn()) {
-                if (DEBUG) Log.i(TAG, "KEY_DOUBLE_TAP");
-                mPowerManager.wakeUp(SystemClock.uptimeMillis());
+                mPowerManager.wakeUpWithProximityCheck(SystemClock.uptimeMillis());
                 return true;
             }
             Message msg = getMessageForKeyEvent(event);
-            mEventHandler.sendMessage(msg);
+            if (mProximitySensor != null) {
+                mEventHandler.sendMessageDelayed(msg, 200);
+                processEvent(event);
+            } else {
+                mEventHandler.sendMessage(msg);
+            }
         }
         return isKeySupported;
     }
@@ -171,6 +182,30 @@ public class KeyHandler implements DeviceKeyHandler {
         } else {
             Log.w(TAG, "Unable to send media key event");
         }
+    }
+
+    private void processEvent(final KeyEvent keyEvent) {
+        mProximityWakeLock.acquire();
+        mSensorManager.registerListener(new SensorEventListener() {
+            @Override
+            public void onSensorChanged(SensorEvent event) {
+                mProximityWakeLock.release();
+                mSensorManager.unregisterListener(this);
+                if (!mEventHandler.hasMessages(GESTURE_REQUEST)) {
+                    // The sensor took to long, ignoring.
+                    return;
+                }
+                mEventHandler.removeMessages(GESTURE_REQUEST);
+                if (event.values[0] == mProximitySensor.getMaximumRange()) {
+                    Message msg = getMessageForKeyEvent(keyEvent);
+                    mEventHandler.sendMessage(msg);
+                }
+            }
+
+            @Override
+            public void onAccuracyChanged(Sensor sensor, int accuracy) {}
+
+        }, mProximitySensor, SensorManager.SENSOR_DELAY_FASTEST);
     }
 
     private void startActivitySafely(Intent intent) {
