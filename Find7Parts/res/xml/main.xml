@@ -16,12 +16,10 @@
 			android:summary="@string/torch_summary_head"
 			android:title="@string/torch_title_head" />
 
-<!--
 		<CheckBoxPreference
 			android:key="music"
 			android:summary="@string/music_summary_head"
 			android:title="@string/music_title_head" />
--->
 	</PreferenceCategory>
 
         <PreferenceCategory android:title="@string/touchscreen_extras">

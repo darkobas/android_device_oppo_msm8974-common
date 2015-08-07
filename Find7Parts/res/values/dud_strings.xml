@@ -17,5 +17,10 @@
     <string name="backlight_summary_disabled">Disabled</string>
     <string name="backlight_summary_enabled_with_timeout">Enabled for <xliff:g id="timeout">%s</xliff:g></string>
     <string name="backlight_summary_enabled">Enabled</string>
+    <string name="music_title_head">Music</string>
+    <string name="music_summary_head">Use gestures to control music playback \n
+    • Two fingers vertically to play/pause\n
+    • Draw left arrow for previous track\n
+    • Draw right arrow for next track</string>
  </resources>
 

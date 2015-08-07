@@ -9,7 +9,7 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import android.media.IAudioService;
+import android.media.session.MediaSessionLegacyHelper;
 import android.os.Handler;
 import android.os.Message;
 import android.os.PowerManager;
@@ -40,13 +40,21 @@ public class KeyHandler implements DeviceKeyHandler {
             "com.android.keyguard.action.DISMISS_KEYGUARD_SECURELY";
 
     // Supported scancodes
+    private static final int FLIP_CAMERA_SCANCODE = 249;
     private static final int GESTURE_CIRCLE_SCANCODE = 250;
+    private static final int GESTURE_SWIPE_DOWN_SCANCODE = 251;
     private static final int GESTURE_V_SCANCODE = 252;
+    private static final int GESTURE_LTR_SCANCODE = 253;
+    private static final int GESTURE_GTR_SCANCODE = 254;
     private static final int KEY_DOUBLE_TAP = 255;
 
     private static final int[] sSupportedGestures = new int[]{
+        FLIP_CAMERA_SCANCODE,
         GESTURE_CIRCLE_SCANCODE,
+        GESTURE_SWIPE_DOWN_SCANCODE,
         GESTURE_V_SCANCODE,
+        GESTURE_LTR_SCANCODE,
+        GESTURE_GTR_SCANCODE,
         KEY_DOUBLE_TAP
     };
 
@@ -81,6 +89,11 @@ public class KeyHandler implements DeviceKeyHandler {
         public void handleMessage(Message msg) {
             KeyEvent event = (KeyEvent) msg.obj;
             switch(event.getScanCode()) {
+            case FLIP_CAMERA_SCANCODE:
+                if (event.getAction() == KeyEvent.ACTION_UP) {
+                    doHapticFeedback();
+                    break;
+                }
             case GESTURE_CIRCLE_SCANCODE:
                 if (DEBUG) Log.i(TAG, "GESTURE_CIRCLE_SCANCODE");
                 ensureKeyguardManager();
@@ -98,6 +111,10 @@ public class KeyHandler implements DeviceKeyHandler {
                 startActivitySafely(intent);
                 doHapticFeedback();
                 break;
+            case GESTURE_SWIPE_DOWN_SCANCODE:
+                dispatchMediaKeyWithWakeLockToMediaSession(KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE);
+                doHapticFeedback();
+                break;
             case GESTURE_V_SCANCODE:
                 if (DEBUG) Log.i(TAG, "GESTURE_V_SCANCODE");
                 mGestureWakeLock.acquire(GESTURE_WAKELOCK_DURATION);
@@ -105,6 +122,14 @@ public class KeyHandler implements DeviceKeyHandler {
                 torchIntent.addFlags(Intent.FLAG_RECEIVER_FOREGROUND);
                 UserHandle user = new UserHandle(UserHandle.USER_CURRENT);
                 mContext.sendBroadcastAsUser(torchIntent, user);
+                doHapticFeedback();
+                break;
+            case GESTURE_LTR_SCANCODE:
+                dispatchMediaKeyWithWakeLockToMediaSession(KeyEvent.KEYCODE_MEDIA_PREVIOUS);
+                doHapticFeedback();
+                break;
+            case GESTURE_GTR_SCANCODE:
+                dispatchMediaKeyWithWakeLockToMediaSession(KeyEvent.KEYCODE_MEDIA_NEXT);
                 doHapticFeedback();
                 break;
             }
@@ -133,6 +158,19 @@ public class KeyHandler implements DeviceKeyHandler {
         Message msg = mEventHandler.obtainMessage(GESTURE_REQUEST);
         msg.obj = keyEvent;
         return msg;
+    }
+
+    private void dispatchMediaKeyWithWakeLockToMediaSession(int keycode) {
+        MediaSessionLegacyHelper helper = MediaSessionLegacyHelper.getHelper(mContext);
+        if (helper != null) {
+            KeyEvent event = new KeyEvent(SystemClock.uptimeMillis(),
+                    SystemClock.uptimeMillis(), KeyEvent.ACTION_DOWN, keycode, 0);
+            helper.sendMediaButtonEvent(event, true);
+            event = KeyEvent.changeAction(event, KeyEvent.ACTION_UP);
+            helper.sendMediaButtonEvent(event, true);
+        } else {
+            Log.w(TAG, "Unable to send media key event");
+        }
     }
 
     private void startActivitySafely(Intent intent) {

@@ -38,8 +38,8 @@ public class DeviceSettings extends PreferenceActivity implements OnPreferenceCh
     private static final String KEY_HAPTIC_FEEDBACK = "touchscreen_haptic_feedback";
     private static final String PROP_HAPTIC_FEEDBACK = "persist.gestures.haptic";
 
-/* Commented out until reimplemented on F7
     public static final String KEY_MUSIC_SWITCH = "music";
+/* Commented out until reimplemented on F7
 
     public static final String KEY_VIBSTRENGTH = "vib_strength";
 */
@@ -47,8 +47,7 @@ public class DeviceSettings extends PreferenceActivity implements OnPreferenceCh
     private TwoStatePreference mTorchSwitch;
     private TwoStatePreference mCameraSwitch;
 
-/*  private TwoStatePreference mMusicSwitch;
-*/
+    private TwoStatePreference mMusicSwitch;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -75,11 +74,11 @@ public class DeviceSettings extends PreferenceActivity implements OnPreferenceCh
         hapticFeedback.setChecked(SystemProperties.getBoolean(PROP_HAPTIC_FEEDBACK, true));
         hapticFeedback.setOnPreferenceChangeListener(this);
         
-        /*mMusicSwitch = (TwoStatePreference) findPreference(KEY_MUSIC_SWITCH);
+        mMusicSwitch = (TwoStatePreference) findPreference(KEY_MUSIC_SWITCH);
         mMusicSwitch.setEnabled(MusicGestureSwitch.isSupported());
         mMusicSwitch.setChecked(MusicGestureSwitch.isEnabled(this));
         mMusicSwitch.setOnPreferenceChangeListener(new MusicGestureSwitch());
-
+/*
         mSuspendFreqCap = (SuspendFreqCap) findPreference(KEY_SUSPEND_CAP_FREQ);
         mSuspendFreqCap.setEnabled(SuspendFreqCap.isSupported());
         mSuspendFreqCap.setValue(SuspendFreqCap.getValue(this));
