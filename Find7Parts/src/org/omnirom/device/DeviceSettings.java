@@ -32,6 +32,9 @@ public class DeviceSettings extends PreferenceActivity implements OnPreferenceCh
     public static final String KEY_CAMERA_SWITCH = "camera";
     public static final String KEY_TORCH_SWITCH = "torch";
 
+
+    private static final String KEY_PROXIMITY_WAKE = "proximity_on_wake";
+
     private static final String KEY_HAPTIC_FEEDBACK = "touchscreen_haptic_feedback";
     private static final String PROP_HAPTIC_FEEDBACK = "persist.gestures.haptic";
 
@@ -76,6 +79,12 @@ public class DeviceSettings extends PreferenceActivity implements OnPreferenceCh
         mMusicSwitch.setChecked(MusicGestureSwitch.isEnabled(this));
         mMusicSwitch.setOnPreferenceChangeListener(new MusicGestureSwitch());
 
+        Preference proximityWake = findPreference(KEY_PROXIMITY_WAKE);
+        boolean proximityCheckOnWake = getResources().getBoolean(
+                com.android.internal.R.bool.config_proximityCheckOnWake);
+        if (proximityWake != null && !proximityCheckOnWake) { 
+            Settings.System.putInt(getContentResolver(), Settings.System.PROXIMITY_ON_WAKE, 0);
+        }
 /*
         mSuspendFreqCap = (SuspendFreqCap) findPreference(KEY_SUSPEND_CAP_FREQ);
         mSuspendFreqCap.setEnabled(SuspendFreqCap.isSupported());

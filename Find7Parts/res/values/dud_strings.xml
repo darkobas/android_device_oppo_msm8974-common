@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
  <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="advanced_display_prefs">Advanced Display Settings</string>
+
+    <!-- Proximity wake -->
+    <string name="proximity_wake_title">Enable accidental wake-up prevention</string>
+    <string name="proximity_wake_summary">check proximity sensor prior to waking up screen</string>
+
     <!-- Key backlight -->
     <string name="button_backlight_title">Backlight</string>
     <string name="button_backlight_enabled">Illuminate buttons</string>
