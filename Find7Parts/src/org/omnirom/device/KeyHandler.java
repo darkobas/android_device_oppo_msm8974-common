@@ -109,8 +109,7 @@ public class KeyHandler implements DeviceKeyHandler {
                 if (mKeyguardManager.isKeyguardSecure() && mKeyguardManager.isKeyguardLocked()) {
                     action = MediaStore.INTENT_ACTION_STILL_IMAGE_CAMERA_SECURE;
                 } else {
-                    mContext.sendBroadcastAsUser(new Intent(ACTION_DISMISS_KEYGUARD),
-                            UserHandle.CURRENT);
+                    mContext.sendBroadcast(new Intent(ACTION_DISMISS_KEYGUARD));
                     action = MediaStore.INTENT_ACTION_STILL_IMAGE_CAMERA;
                 }
                 mPowerManager.wakeUp(SystemClock.uptimeMillis());
