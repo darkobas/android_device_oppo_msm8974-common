@@ -150,3 +150,6 @@ TARGET_GPS_HAL_PATH := device/oppo/msm8974-common/gps
 TARGET_PROVIDES_GPS_LOC_API := true
 BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_23x41.h\"
 TW_BRIGHTNESS_PATH := /sys/class/leds/lcd-backlight/brightness
+
+# Added to indicate that protobuf-c is supported in this build
+PROTOBUF_SUPPORTED := true
