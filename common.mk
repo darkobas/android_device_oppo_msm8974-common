@@ -148,7 +148,6 @@ PRODUCT_BOOT_JARS += qcmediaplayer
 
 # wifi
 PRODUCT_PACKAGES += \
-    mac-update \
     wcnss_service \
     libwpa_client \
     hostapd \

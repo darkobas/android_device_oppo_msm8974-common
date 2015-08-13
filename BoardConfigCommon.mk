@@ -120,8 +120,7 @@ BOARD_SEPOLICY_UNION += \
     thermal-engine.te \
     vold.te \
     property_contexts \
-    property.te \
-    mac-update.te
+    property.te 
 
 # Recovery:Start
 
