@@ -25,6 +25,7 @@ import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.PreferenceActivity;
 import android.preference.TwoStatePreference;
 import android.provider.Settings;
+import android.view.MenuItem;
 
 public class DeviceSettings extends PreferenceActivity implements OnPreferenceChangeListener {
 
@@ -52,6 +53,8 @@ public class DeviceSettings extends PreferenceActivity implements OnPreferenceCh
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getActionBar().setDisplayHomeAsUpEnabled(true);
+
         addPreferencesFromResource(R.xml.main);
 
         mDoubleTapSwitch = (TwoStatePreference) findPreference(KEY_DOUBLE_TAP_SWITCH);
@@ -107,6 +110,18 @@ public class DeviceSettings extends PreferenceActivity implements OnPreferenceCh
             return true;
         }
 	return false;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+        case android.R.id.home:
+            finish();
+            return true;
+        default:
+            break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
