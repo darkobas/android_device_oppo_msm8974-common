@@ -254,7 +254,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     use.voice.path.for.pcm.voip=true \
     ro.qc.sdk.audio.fluencetype=fluence \
     persist.audio.fluence.voicecall=true \
-    persist.audio.fluence.audiorec=true \
     av.offload.enable=true \
     av.streaming.offload.enable=false \
     audio.offload.pcm.enable=true \
