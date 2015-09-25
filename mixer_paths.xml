@@ -897,8 +897,8 @@
 
     <path name="dmic-endfire">
         <path name="handset-dmic" />
-        <ctl name="ADC3 Volume" value="9" />
-        <ctl name="ADC4 Volume" value="9" />
+        <ctl name="ADC3 Volume" value="16" />
+        <ctl name="ADC4 Volume" value="16" />
     </path>
 
     <path name="voice-dmic-ef">
