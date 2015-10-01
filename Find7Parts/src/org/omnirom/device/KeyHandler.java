@@ -107,7 +107,7 @@ public class KeyHandler implements DeviceKeyHandler {
                 } else {
                     mContext.sendBroadcastAsUser(new Intent(ACTION_DISMISS_KEYGUARD),
                             UserHandle.CURRENT);
-                    action = MediaStore.INTENT_ACTION_STILL_IMAGE_CAMERA;
+                    action = MediaStore.INTENT_ACTION_STILL_IMAGE_CAMERA_SECURE;
                 }
                 mPowerManager.wakeUp(SystemClock.uptimeMillis());
                 Intent intent = new Intent(action, null);
