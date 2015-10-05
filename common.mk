@@ -255,6 +255,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.qc.sdk.audio.fluencetype=fluence \
     persist.audio.fluence.voicecall=true \
     av.offload.enable=true \
+    tunnel.audio.encode=false \
     av.streaming.offload.enable=false \
     audio.offload.pcm.enable=true \
     audio.offload.multiple.enabled=false
