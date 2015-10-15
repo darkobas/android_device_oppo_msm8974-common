@@ -20,7 +20,7 @@ TARGET_CPU_SMP := true
 TARGET_USE_KRAIT_BIONIC_OPTIMIZATION := true
 
 BOARD_KERNEL_SEPARATED_DT := true
-BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.hardware=qcom androidboot.selinux=enforcing user_debug=31 msm_rtb.filter=0x37 ehci-hcd.park=3
+BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.hardware=qcom androidboot.selinux=permissive user_debug=31 msm_rtb.filter=0x37 ehci-hcd.park=3
 BOARD_KERNEL_BASE := 0x00000000
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x02000000 --tags_offset 0x01e00000
@@ -92,7 +92,7 @@ WIFI_DRIVER_FW_PATH_AP           := "ap"
 TARGET_USES_WCNSS_CTRL           := true
 TARGET_USES_QCOM_WCNSS_QMI       := true
 TARGET_USES_WCNSS_MAC_ADDR_REV   := true
-CONFIG_EAP_PROXY                 := qmi
+#CONFIG_EAP_PROXY                 := qmi
 
 # charger
 BOARD_CHARGER_DISABLE_INIT_BLANK := true
@@ -102,12 +102,12 @@ HEALTHD_BACKLIGHT_ON_LEVEL := 125
 # power hal
 TARGET_PROVIDES_POWERHAL := true
 
-include device/qcom/sepolicy/sepolicy.mk
+#include device/qcom/sepolicy/sepolicy.mk
 
-BOARD_SEPOLICY_DIRS += \
+#BOARD_SEPOLICY_DIRS += \
     $(COMMON_PATH)/sepolicy
 
-BOARD_SEPOLICY_UNION += \
+#BOARD_SEPOLICY_UNION += \
     device.te \
     file_contexts \
     file.te \
