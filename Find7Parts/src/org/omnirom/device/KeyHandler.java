@@ -146,10 +146,10 @@ public class KeyHandler implements DeviceKeyHandler {
         }
         boolean isKeySupported = ArrayUtils.contains(sSupportedGestures, event.getScanCode());
         if (isKeySupported && !mEventHandler.hasMessages(GESTURE_REQUEST)) {
-            if (event.getScanCode() == KEY_DOUBLE_TAP && !mPowerManager.isScreenOn()) {
-                mPowerManager.wakeUpWithProximityCheck(SystemClock.uptimeMillis());
-                return true;
-            }
+//            if (event.getScanCode() == KEY_DOUBLE_TAP && !mPowerManager.isScreenOn()) {
+//                mPowerManager.wakeUpWithProximityCheck(SystemClock.uptimeMillis());
+//                return true;
+//            }
             Message msg = getMessageForKeyEvent(event);
             if (mProximitySensor != null) {
                 mEventHandler.sendMessageDelayed(msg, 200);
@@ -181,21 +181,21 @@ public class KeyHandler implements DeviceKeyHandler {
     }
 
     private void processEvent(final KeyEvent keyEvent) {
-        mProximityWakeLock.acquire();
+//        mProximityWakeLock.acquire();
         mSensorManager.registerListener(new SensorEventListener() {
             @Override
             public void onSensorChanged(SensorEvent event) {
-                mProximityWakeLock.release();
+//                mProximityWakeLock.release();
                 mSensorManager.unregisterListener(this);
                 if (!mEventHandler.hasMessages(GESTURE_REQUEST)) {
                     // The sensor took to long, ignoring.
                     return;
                 }
                 mEventHandler.removeMessages(GESTURE_REQUEST);
-                if (event.values[0] == mProximitySensor.getMaximumRange()) {
-                    Message msg = getMessageForKeyEvent(keyEvent);
-                    mEventHandler.sendMessage(msg);
-                }
+//                if (event.values[0] == mProximitySensor.getMaximumRange()) {
+//                    Message msg = getMessageForKeyEvent(keyEvent);
+//                    mEventHandler.sendMessage(msg);
+//                }
             }
 
             @Override
