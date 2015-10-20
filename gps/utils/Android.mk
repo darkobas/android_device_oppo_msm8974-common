@@ -17,6 +17,7 @@ LOCAL_SRC_FILES += \
     msg_q.c \
     linked_list.c \
     loc_target.cpp \
+    LocThread.cpp \
     loc_timer.c \
     ../platform_lib_abstractions/elapsed_millis_since_boot.cpp \
     loc_misc_utils.cpp
@@ -41,6 +42,7 @@ LOCAL_COPY_HEADERS:= \
    loc_cfg.h \
    log_util.h \
    linked_list.h \
+   LocThread.h \
    msg_q.h \
    loc_target.h \
    loc_timer.h \
