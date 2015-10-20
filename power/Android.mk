@@ -11,6 +11,10 @@ LOCAL_SRC_FILES := \
                    power.c \
                    util.c
 
+ifneq ($(TARGET_TAP_TO_WAKE_NODE),)
+LOCAL_CFLAGS += -DTAP_TO_WAKE_NODE=\"$(TARGET_TAP_TO_WAKE_NODE)\"
+endif
+
 LOCAL_MODULE:= power.$(TARGET_BOARD_PLATFORM)
 LOCAL_MODULE_TAGS := optional
 

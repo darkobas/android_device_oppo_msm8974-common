@@ -142,9 +142,12 @@ PRODUCT_PACKAGES += \
     libOmxEvrcEnc \
     libOmxQcelp13Enc \
     libOmxVdecHevc \
-    qcmediaplayer
+    qcmediaplayer \
+    tcmiface
 
-PRODUCT_BOOT_JARS += qcmediaplayer
+PRODUCT_BOOT_JARS += \
+    qcmediaplayer \
+    tcmiface
 
 # wifi
 PRODUCT_PACKAGES += \
