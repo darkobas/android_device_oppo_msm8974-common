@@ -20,7 +20,7 @@ TARGET_CPU_SMP := true
 TARGET_USE_KRAIT_BIONIC_OPTIMIZATION := true
 
 BOARD_KERNEL_SEPARATED_DT := true
-BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.hardware=qcom androidboot.selinux=permissive user_debug=31 msm_rtb.filter=0x37 ehci-hcd.park=3
+BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.hardware=bacon user_debug=31 msm_rtb.filter=0x3F ehci-hcd.park=3 androidboot.bootdevice=msm_sdcc.1 androidboot.selinux=permissive
 BOARD_KERNEL_BASE := 0x00000000
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x02000000 --tags_offset 0x01e00000
@@ -151,3 +151,13 @@ TW_BRIGHTNESS_PATH := /sys/class/leds/lcd-backlight/brightness
 
 # Added to indicate that protobuf-c is supported in this build
 PROTOBUF_SUPPORTED := true
+
+# MSM Init
+TARGET_INIT_VENDOR_LIB := libinit_msm_oppo
+
+# QCOM Power
+TARGET_POWERHAL_VARIANT := oppo
+
+# Releasetools
+TARGET_RECOVERY_UPDATER_LIBS := librecovery_updater_oppo
+

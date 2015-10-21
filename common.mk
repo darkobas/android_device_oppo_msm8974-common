@@ -34,11 +34,6 @@ PRODUCT_PACKAGES += \
 #PRODUCT_PACKAGES += \
 #    OmniTorch
 
-# Ramdisk
-PRODUCT_COPY_FILES += \
-    $(COMMON_PATH)/configs/init.oppo.usb.rc:root/init.oppo.usb.rc \
-    $(COMMON_PATH)/configs/ueventd.qcom.rc:root/ueventd.qcom.rc
-
 # Config files for touch and input
 PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/configs/keylayout/gpio-keys.kl:system/usr/keylayout/gpio-keys.kl \
@@ -158,8 +153,12 @@ PRODUCT_PACKAGES += \
     wpa_supplicant.conf \
     dhcpcd.conf
 
-PRODUCT_COPY_FILES += \
-    $(COMMON_PATH)/configs/init.qcom.bt.sh:system/etc/init.qcom.bt.sh
+# Ramdisk
+PRODUCT_PACKAGES += \
+    init.qcom-common.rc \
+    init.qcom.power.rc \
+    init.recovery.qcom.rc \
+    ueventd.qcom.rc
 
 # Device settings
 PRODUCT_PACKAGES += \
