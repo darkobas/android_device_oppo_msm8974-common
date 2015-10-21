@@ -101,9 +101,6 @@ BOARD_CHARGER_DISABLE_INIT_BLANK := true
 HEALTHD_FORCE_BACKLIGHT_CONTROL := true
 HEALTHD_BACKLIGHT_ON_LEVEL := 125
 
-# power hal
-TARGET_PROVIDES_POWERHAL := true
-
 #include device/qcom/sepolicy/sepolicy.mk
 
 #BOARD_SEPOLICY_DIRS += \
